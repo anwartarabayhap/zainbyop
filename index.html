@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         .tableauPlaceholder {
-            margin-bottom: -10px; /* Remove 10px from the bottom to hide the Tableau toolbar */
+            margin-bottom: -30px; /* Remove an additional 30px from the bottom to hide the Tableau toolbar */
         }
     </style>
 </head>
@@ -48,10 +48,10 @@
         var vizElement = divElement.getElementsByTagName('object')[0];
         if (divElement.offsetWidth > 800) {
             vizElement.style.width = '900px';
-            vizElement.style.height = '527px'; // Reduced by 10px from the original height
+            vizElement.style.height = '527px'; // Reduced by 30px from the original height
         } else if (divElement.offsetWidth > 500) {
             vizElement.style.width = '900px';
-            vizElement.style.height = '527px'; // Reduced by 10px from the original height
+            vizElement.style.height = '527px'; // Reduced by 30px from the original height
         } else {
             vizElement.style.width = '100%';
             vizElement.style.height = '1227px';
