@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Embedded Tableau Dashboard</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Tableau Visualization</title>
+    <style>
+        #vizWrapper {
+            width: 900px; /* Width set to 900px */
+            height: 480px; /* Height set to 30px less than the original to hide part of the bottom */
+            overflow: hidden;
+            position: relative;
+        }
+        #vizContainer {
+            width: 900px;
+            height: 490px; /* Original height of the viz */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <iframe src="https://public.tableau.com/views/ZainBYOP-weekly/Dashboard1?:showAppBanner=false&:showVizHome=no&:embed=true&:showShareOptions=false&:origin=viz_share_link&:showShareOptions=false&:showDownload=false" width="900" height="450" frameborder="0"></iframe>
-            </div>
-        </div>
+    <div id="vizWrapper">
+        <div id="vizContainer"></div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script type="text/javascript">
+        function initViz() {
+            var containerDiv = document.getElementById("vizContainer"),
+            url = "https://public.tableau.com/views/ZainBYOP-weekly/Dashboard1?:showAppBanner=false&:showVizHome=no&:embed=true&:showShareOptions=false&:origin=viz_share_link&:showShareOptions=false&:showDownload=false",
+            options = {
+                hideTabs: true,
+                hideToolbar: true
+            };
+
+            var viz = new tableau.Viz(containerDiv, url, options);
+        }
+        window.onload = initViz;
+    </script>
 </body>
 </html>
