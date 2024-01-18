@@ -3,19 +3,15 @@
 <head>
     <title>Tableau Visualization</title>
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-        }
         #vizWrapper {
-            width: 100%; /* Full width */
-            height: 80%; /* Adjust the height as needed */
+            width: 1200px; /* Example width */
+            height: 600px; /* Example height */
             position: relative;
             overflow: hidden;
         }
         #vizContainer {
-            width: 100%;
-            height: 100%;
+            width: 100%; /* Full width relative to the wrapper */
+            height: 100%; /* Full height relative to the wrapper */
             position: absolute;
             top: 0;
             left: 0;
@@ -35,21 +31,27 @@
                 url = "https://public.tableau.com/views/ZainBYOP-weekly/Dashboard1?:showAppBanner=false&:showVizHome=no&:embed=true&:showShareOptions=false&:origin=viz_share_link&:showShareOptions=false&:showDownload=false",
                 options = {
                     hideTabs: true,
-                    hideToolbar: true,
-                    onFirstInteractive: function () {
-                        window.addEventListener('resize', resizeViz);
-                    }
+                    hideToolbar: true
                 };
 
             viz = new tableau.Viz(containerDiv, url, options);
+            adjustVizContainerSize();
+        }
+
+        function adjustVizContainerSize() {
+            var wrapperDiv = document.getElementById("vizWrapper");
+            var containerDiv = document.getElementById("vizContainer");
+            containerDiv.style.height = (wrapperDiv.offsetHeight - 30) + "px"; // Reduce height by 30px
         }
 
         function resizeViz() {
+            adjustVizContainerSize();
             var containerDiv = document.getElementById("vizContainer");
             viz.setFrameSize(containerDiv.offsetWidth, containerDiv.offsetHeight);
         }
 
         window.onload = initViz;
+        window.onresize = resizeViz;
     </script>
 </body>
 </html>
