@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tableau Visualization</title>
+    <style>
+        #vizWrapper {
+            width: 100%; /* Width as a percentage of the parent element */
+            height: 100%; /* Height as a percentage of the parent element */
+            overflow: hidden;
+            position: relative;
+        }
+        #vizContainer {
+            width: 100%;
+            height: 100%; /* Adjusted to 100% to be responsive */
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="vizWrapper">
+        <div id="vizContainer"></div>
+    </div>
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+    <script type="text/javascript">
+        var viz;
+
+        function initViz() {
+            var containerDiv = document.getElementById("vizContainer"),
+                url = "https://public.tableau.com/views/ZainBYOP-weekly/Dashboard1?:showAppBanner=false&:showVizHome=no&:embed=true&:showShareOptions=false&:origin=viz_share_link&:showShareOptions=false&:showDownload=false",
+                options = {
+                    hideTabs: true,
+                    hideToolbar: true,
+                    onFirstInteractive: function () {
+                        window.addEventListener('resize', resizeViz);
+                    }
+                };
+
+            viz = new tableau.Viz(containerDiv, url, options);
+        }
+
+        function resizeViz() {
+            var containerDiv = document.getElementById("vizContainer");
+            viz.setFrameSize(containerDiv.offsetWidth, containerDiv.offsetHeight);
+        }
+
+        window.onload = initViz;
+    </script>
+</body>
+</html>
